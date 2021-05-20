@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import Modal from "../UI/Modal";
 
 import classes from './Cart.module.css';
 
@@ -10,21 +11,21 @@ const Cart = props => {
             amount: '2',
             price: '12.98'
         }
-    ].map(item => <li>{item.name}</li>)
+    ].map(item => <li key={item.id}>{item.name}</li>)
 
     return (
         <Fragment>
-            <div>
+            <Modal>
                 <ul className={classes['cart-item']}>{cartItems}</ul>
                 <div className={classes.total}>
                     <span>Total Amount</span>
                     <span>35.52</span>
                 </div>
                 <div className={classes.actions}>
-                    <button className={classes['button--alt']}Close></button>
+                    <button className={classes['button--alt']}>Close</button>
                     <button className={classes.button}>Order</button>
                 </div>
-            </div>
+            </Modal>
         </Fragment>
     );
 };
