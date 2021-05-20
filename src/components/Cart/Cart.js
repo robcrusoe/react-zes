@@ -15,14 +15,14 @@ const Cart = props => {
 
     return (
         <Fragment>
-            <Modal>
+            <Modal onHideCart={props.onHideCart}>
                 <ul className={classes['cart-item']}>{cartItems}</ul>
                 <div className={classes.total}>
                     <span>Total Amount</span>
                     <span>35.52</span>
                 </div>
                 <div className={classes.actions}>
-                    <button className={classes['button--alt']}>Close</button>
+                    <button className={classes['button--alt']} onClick={props.onHideCart}>Close</button>
                     <button className={classes.button}>Order</button>
                 </div>
             </Modal>
