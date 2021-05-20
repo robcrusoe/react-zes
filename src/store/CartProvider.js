@@ -8,7 +8,7 @@ const defaultCartState = {
 
 /* The `reducer` function is placed outside the component function so that it isn't recreated every-time the provider is re-evaluated */
 const cartReducer = (state, action) => {
-    if (action === 'ADD_ITEM') {
+    if (action.type === 'ADD_ITEM') {
         /* We wanna update our state in an immutable way */
         const updatedItems = state.items.concat(action.item);
         const updatedTotalAmount = state.totalAmount + action.item.price * action.item.amount;
@@ -17,7 +17,7 @@ const cartReducer = (state, action) => {
             items: updatedItems,
             totalAmount: updatedTotalAmount
         };
-    } else if (action === 'DELETE_ITEM') {
+    } else if (action.type === 'DELETE_ITEM') {
         return;
     }
 
