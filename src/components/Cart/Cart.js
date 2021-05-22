@@ -19,7 +19,7 @@ const Cart = props => {
     return (
         <Fragment>
             <Modal onHideCart={props.onHideCart}>
-                <ul className={classes['cart-item']}>{cartItems}</ul>
+                <ul className={classes['cart-items']}>{cartItems}</ul>
                 <div className={classes.total}>
                     <span>Total Amount</span>
                     <span>{totalAmount}</span>

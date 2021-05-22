@@ -10,11 +10,29 @@ const defaultCartState = {
 const cartReducer = (state, action) => {
     if (action.type === 'ADD_ITEM') {
         /* We wanna update our state in an immutable way */
-        const updatedItems = state.items.concat(action.item);
         const updatedTotalAmount = state.totalAmount + action.item.price * action.item.amount;
 
+        const existingCartItemIndex = state.items.findIndex(item => item.id === action.item.id);
+        const existingCartItem = state.items[existingCartItemIndex];
+
+        let updatedCartItem;
+        let updatedCartItems;
+
+        if (existingCartItem) {
+            updatedCartItem = {
+                ...existingCartItem,
+                amount: existingCartItem.amount + action.item.amount
+            };
+
+            updatedCartItems = [...state.items];
+            updatedCartItems[existingCartItemIndex] = updatedCartItem;
+        } else {
+            updatedCartItem = { ...action.item };
+            updatedCartItems = state.items.concat(updatedCartItem);
+        }
+
         return {
-            items: updatedItems,
+            items: updatedCartItems,
             totalAmount: updatedTotalAmount
         };
     } else if (action.type === 'DELETE_ITEM') {
